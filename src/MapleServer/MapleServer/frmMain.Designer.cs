@@ -74,7 +74,10 @@
             this.ClientSize = new System.Drawing.Size(669, 367);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(685, 405);
+            this.MinimumSize = new System.Drawing.Size(685, 405);
             this.Name = "ServerMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MapleStory ServerEmulator Ver079";
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
