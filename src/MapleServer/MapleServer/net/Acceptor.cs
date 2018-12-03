@@ -1,11 +1,7 @@
 ﻿using MapleServer.lib;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MapleServer.net
 {
@@ -16,11 +12,11 @@ namespace MapleServer.net
         /// <summary>
         /// 定义客户端连接事件
         /// </summary>
-        public event EventHandler<Session> OnClientConnected;//事件方法：表示在该事件提供数据时处理该方法
+        public Action<Session> OnClientConnected;//事件方法：表示在该事件提供数据时处理该方法
         /// <summary>
         /// 定义异常信息处理事件
         /// </summary>
-        public event EventHandler<ErrorLogger> HandleException;
+        public Action<ErrorLogger> HandleException;
 
         public Acceptor() //实例化
         {
@@ -40,16 +36,16 @@ namespace MapleServer.net
                     Socket socket = _listener.EndAccept(asyncResult);
                     Session session = new Session(socket, SessionType.SERVER_TO_CLIENT);
                     session.WaitForData();
-                    OnClientConnected?.Invoke(this, session);//触发客户端连接事件
+                    OnClientConnected?.Invoke(session);//触发客户端连接事件
                     WaitForClientConnect();
                 }
                 catch (ObjectDisposedException ode)
                 {
-                    HandleException?.Invoke(this, new ErrorLogger(ErrorLevel.ObjectDisposedException, ode.ToString()));
+                    HandleException?.Invoke(new ErrorLogger(ErrorLevel.ObjectDisposedException, ode.ToString()));
                 }
                 catch (Exception se)
                 {
-                    HandleException?.Invoke(this, new ErrorLogger(ErrorLevel.Exception, se.ToString()));
+                    HandleException?.Invoke(new ErrorLogger(ErrorLevel.Exception, se.ToString()));
                 }
             }
             , null);

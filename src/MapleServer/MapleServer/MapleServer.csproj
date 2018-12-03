@@ -52,6 +52,13 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="lib\ErrorLogger.cs" />
+    <Compile Include="net\AbstractPacket.cs" />
+    <Compile Include="net\Acceptor.cs" />
+    <Compile Include="net\PacketReader.cs" />
+    <Compile Include="net\PacketWriter.cs" />
+    <Compile Include="net\Session.cs" />
+    <Compile Include="net\SessionType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
