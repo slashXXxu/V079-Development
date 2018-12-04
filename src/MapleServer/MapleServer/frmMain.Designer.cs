@@ -41,10 +41,12 @@
             this._Connections = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._Rate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtLog = new MapleServer.lib.Control.RollingTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -54,7 +56,7 @@
             this.tabControl1.Location = new System.Drawing.Point(-2, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(562, 368);
+            this.tabControl1.Size = new System.Drawing.Size(559, 364);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -64,7 +66,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(554, 342);
+            this.tabPage1.Size = new System.Drawing.Size(551, 338);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "控制台";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -158,13 +160,30 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txtLog);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(554, 342);
+            this.tabPage2.Size = new System.Drawing.Size(551, 338);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "调试信息";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtLog
+            // 
+            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLog.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLog.Location = new System.Drawing.Point(5, 5);
+            this.txtLog.MaxLength = 327670;
+            this.txtLog.MaxLines = 30;
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtLog.Size = new System.Drawing.Size(540, 327);
+            this.txtLog.TabIndex = 0;
             // 
             // frmMain
             // 
@@ -184,6 +203,8 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -202,6 +223,7 @@
         private System.Windows.Forms.ColumnHeader _Connections;
         private System.Windows.Forms.ColumnHeader _Rate;
         private System.Windows.Forms.GroupBox groupBox2;
+        private lib.Control.RollingTextBox txtLog;
     }
 }
 

@@ -1,9 +1,15 @@
-﻿using MapleServer.lib;
-using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Concurrent;
 
-namespace MapleServer
+namespace MapleServer.lib.Control
 {
     public partial class RollingTextBox : TextBox
     {
@@ -17,7 +23,8 @@ namespace MapleServer
             if (Lines.Length > MaxLines)
             {
                 Lines.Skip(Lines.Length - MaxLines).ForEach(_rollingLog.Enqueue);
-            } else
+            }
+            else
             {
                 Lines.ForEach(_rollingLog.Enqueue);
             }
@@ -28,6 +35,10 @@ namespace MapleServer
             while (_rollingLog.Count >= MaxLines)
             {
                 _rollingLog.TryDequeue(out result);
+                if (result != null)
+                {
+                    AddLine(result);//test
+                }
             }
             _rollingLog.Enqueue(text);
             ForceUpdate();
