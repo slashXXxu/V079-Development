@@ -184,7 +184,7 @@ namespace MapleServer.net
         /// <param name="@string">The hex-string to write</param>
         public void WriteHexString(String hexString)
         {
-            WriteBytes(HexEncoding.GetBytes(hexString));
+            //WriteBytes(HexEncoding.GetBytes(hexString));
         }
 
         /// <summary>

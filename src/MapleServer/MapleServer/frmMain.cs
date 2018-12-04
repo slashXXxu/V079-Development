@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace MapleServer
 {
-    public partial class ServerMain : Form
+    public partial class frmMain : Form
     {
-        public ServerMain()
+        public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
