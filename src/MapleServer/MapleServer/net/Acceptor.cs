@@ -5,55 +5,58 @@ using System.Net.Sockets;
 
 namespace MapleServer.net
 {
-    public class Acceptor : IDisposable
+    public abstract class Acceptor
     {
-        private readonly Socket _listener;
-
-        /// <summary>
-        /// 定义客户端连接事件
-        /// </summary>
-        public Action<Session> OnClientConnected;//事件方法：表示在该事件提供数据时处理该方法
-        /// <summary>
-        /// 定义异常信息处理事件
-        /// </summary>
-        public Action<ErrorLogger> HandleException;
-
-        public Acceptor() //实例化
+        private TcpListener _listener;
+        public ushort port { get; private set; }
+        private bool Stopped = true; 
+        protected Acceptor(ushort _port)
         {
-            _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            port = _port;
+            Start();
         }
-        public void StartListening(int port)
+        public void Start()
         {
-            _listener.Bind(new IPEndPoint(IPAddress.Any, port));
-            _listener.Listen(20);//同时连接等候数
-            WaitForClientConnect();
+            if (!Stopped)
+            {
+                return;
+            }
+            //if (Type.GetType("Mono.Runtime") == null){} ??
+            _listener = new TcpListener(IPAddress.Any, port);
+            _listener.Start(200);
+            Stopped = false;
+            _listener.BeginAcceptSocket(EndAccept, _listener);
         }
-        private void WaitForClientConnect()
+        public void Stop()
         {
-            _listener.BeginAccept(asyncResult => {
+            if (Stopped)
+            {
+                return;
+            }
+            Stopped = true;
+            if (_listener!=null)
+            {
+                _listener.Stop();
+                _listener = null;
+            }
+        }
+
+        private void EndAccept(IAsyncResult ar)
+        {
+            if (Stopped)
+            {
+                return;
+            } else
+            {
+                var listener = (TcpListener)ar.AsyncState;
                 try
                 {
-                    Socket socket = _listener.EndAccept(asyncResult);
-                    Session session = new Session(socket, SessionType.SERVER_TO_CLIENT);
-                    session.WaitForData();
-                    OnClientConnected?.Invoke(session);//触发客户端连接事件
-                    WaitForClientConnect();
+                    OnAccept(listener.EndAcceptSocket(ar));
                 }
-                catch (ObjectDisposedException ode)
-                {
-                    HandleException?.Invoke(new ErrorLogger(ErrorLevel.ObjectDisposedException, ode.ToString()));
-                }
-                catch (Exception se)
-                {
-                    HandleException?.Invoke(new ErrorLogger(ErrorLevel.Exception, se.ToString()));
-                }
+                catch { }
+                listener.BeginAcceptSocket(EndAccept, listener);
             }
-            , null);
         }
-        public void Dispose()
-        {
-            _listener.Close();//关闭服务器
-            GC.SuppressFinalize(this);//系统垃圾回收
-        }
+        public abstract void OnAccept(Socket pSocket); //抽象事件
     }
 }

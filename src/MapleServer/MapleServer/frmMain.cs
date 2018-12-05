@@ -37,8 +37,26 @@ namespace MapleServer
             tr.IsBackground = true;
             tr.Start();
         }
+        public void LogAppend(string what)
+        {
+            BeginInvoke((MethodInvoker)delegate
+            {
+                txtLog.AddLine(what);
+                //CenterServer.Instance.LogToLogfile(what);
+            });
+        }
+
+        public void LogAppend(string what, params object[] args)
+        {
+            LogAppend(string.Format(what, args));
+        }
+
         private void InitializeServer()
         {
+            this.LogAppend("");
+            //this.LogAppend("\t- WvsCenter v{0}.{1} -", Constants.MapleVersion, Constants.PatchLocation);
+            this.LogAppend("\t- 游戏版本号 v{0}.{1} -", 79, 1);
+            this.LogAppend("");
             try
             {
 

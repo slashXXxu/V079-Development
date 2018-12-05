@@ -90,8 +90,7 @@
     </Compile>
     <Compile Include="net\AbstractPacket.cs" />
     <Compile Include="net\Acceptor.cs" />
-    <Compile Include="net\PacketReader.cs" />
-    <Compile Include="net\PacketWriter.cs" />
+    <Compile Include="net\Packet.cs" />
     <Compile Include="net\Session.cs" />
     <Compile Include="net\SessionType.cs" />
     <Compile Include="net\SocketInfo.cs" />
