@@ -42,6 +42,7 @@
             this._Connections = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._Rate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtLog = new MapleServer.lib.RollingTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -170,6 +171,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txtLog);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -177,6 +179,22 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "调试信息";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtLog
+            // 
+            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLog.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLog.Location = new System.Drawing.Point(5, 5);
+            this.txtLog.MaxLength = 327670;
+            this.txtLog.MaxLines = 30;
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtLog.Size = new System.Drawing.Size(540, 327);
+            this.txtLog.TabIndex = 0;
             // 
             // frmMain
             // 
@@ -218,6 +236,7 @@
         private System.Windows.Forms.ColumnHeader _Rate;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private lib.RollingTextBox txtLog;
     }
 }
 
