@@ -1,4 +1,4 @@
-﻿namespace MapleServer.lib.Control
+﻿namespace MapleServer.lib
 {
     partial class RollingTextBox
     {
@@ -38,6 +38,7 @@
             this.textBox1.Size = new System.Drawing.Size(100, 21);
             this.textBox1.TabIndex = 0;
             this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -47,7 +47,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>BlueSnail.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>log4\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -73,14 +79,15 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="lib\Control\RollingTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="lib\Control\RollingTextBox.Designer.cs">
-      <DependentUpon>RollingTextBox.cs</DependentUpon>
-    </Compile>
+    <Compile Include="lib\AeroRenderer.cs" />
     <Compile Include="lib\ErrorLogger.cs" />
     <Compile Include="lib\Extensions.cs" />
+    <Compile Include="lib\RollingTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="lib\RollingTextBox.Designer.cs">
+      <DependentUpon>RollingTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="net\AbstractPacket.cs" />
     <Compile Include="net\Acceptor.cs" />
     <Compile Include="net\PacketReader.cs" />
@@ -93,7 +100,7 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="lib\Control\RollingTextBox.resx">
+    <EmbeddedResource Include="lib\RollingTextBox.resx">
       <DependentUpon>RollingTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -131,7 +138,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Content Include="BlueSnail.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

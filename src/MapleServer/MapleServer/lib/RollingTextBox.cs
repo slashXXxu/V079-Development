@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.Concurrent;
 
-namespace MapleServer.lib.Control
+namespace MapleServer.lib
 {
     public partial class RollingTextBox : TextBox
     {
